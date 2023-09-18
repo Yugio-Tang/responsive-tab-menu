@@ -22,9 +22,14 @@ const TabNavBar = React.forwardRef( (props, ref) => {
             ref.current.removeEventListener('scroll', handleScroll);
         }
     }, []);
-
+    const cityChangeHandler = (id) => {
+        props.onSetCity(id);
+    };
+    
     const cities = CITIES.map( city => 
-            <li className={`${classes['tab-btn']} ${props.displayCity === city.id ?classes.active : ""}`} key={city.id}>
+            <li className={`${classes['tab-btn']} ${props.displayCity === city.id ?classes.active : ""}`} 
+                key={city.id}
+                onClick={ ()=> cityChangeHandler(city.id) }>
                 {city.name}
             </li>
         );
